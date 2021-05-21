@@ -1,0 +1,4 @@
+GET http://localhost:4000/api/pokemon
+
+###
+GET http://localhost:4000/api/pokemon/1
