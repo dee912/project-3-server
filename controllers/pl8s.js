@@ -82,10 +82,25 @@ async function search(req, res, next) {
   }
 }
 
+async function show(req, res, next) {
+  try {
+    const pl8 = await Pl8.findById(req.params.id).populate('user')
+
+    if (!pl8) {
+      throw new NotFound('Pl8 not found.')
+    }
+
+    res.status(200).json(pl8)
+  } catch (error) {
+    next(error)
+  }
+}
+
 export default {
   index,
   create,
   edit,
   remove,
   search,
+  show,
 }
