@@ -37,5 +37,4 @@ const pl8 = new Schema({
   comments: { type: [comment], required: true },
 })
 
-
 export default model('Pl8', pl8)
