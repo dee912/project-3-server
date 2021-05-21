@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import mongooseHidden from 'mongoose-hidden'
 
 const { Schema, model } = mongoose
 
