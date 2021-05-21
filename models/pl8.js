@@ -30,8 +30,4 @@ const pl8 = new Schema({
   comments: { type: [comment], required: true },
 })
 
-pl8.plugin(mongooseHidden({ defaultHidden: 
-  { password: true, email: true, _id: true },
-}))
-
 export default model('Pl8', pl8)

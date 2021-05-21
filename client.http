@@ -1,5 +1,11 @@
-GET http://localhost:4000/api/pl8s
+@baseUrl = http://localhost:4000/api/pl8s
+@id = 60a7d097986e6b47fc639d9e
+
+GET {{baseUrl}}
 
 ###
 
-GET http://localhost:4000/api/pl8s
+GET {{baseUrl}}/{{id}}
+
+###
+
