@@ -1,10 +1,7 @@
 import mongoose from 'mongoose'
 import mongooseHidden from 'mongoose-hidden'
-<<<<<<< HEAD
 import uniqueValidator from 'mongoose-unique-validator'
 import bcrypt from 'bcrypt'
-=======
->>>>>>> development
 
 const { Schema, model } = mongoose
 
@@ -18,7 +15,6 @@ const m8 = new Schema({
   r8dPl8s: { type: [Schema.ObjectId], ref: 'Pl8', required: false },
 })
 
-<<<<<<< HEAD
 m8.pre('save', function hashPassword(next) {
   if (this.isModified('password')) {
     this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
@@ -46,8 +42,6 @@ m8
   })
 
 m8.plugin(uniqueValidator)
-=======
->>>>>>> development
 m8.plugin(mongooseHidden({ defaultHidden: 
   { password: true, email: true, _id: true },
 }))

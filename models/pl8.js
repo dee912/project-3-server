@@ -14,11 +14,7 @@ const r8ing = new Schema({
     type: Number, 
     required: true,
     validate: [
-<<<<<<< HEAD
-      { validator: r8ing => r8ing >= 0 && r8ing <= 8, msg: 'R8ing must be between 8 and 8' }
-=======
       { validator: r8ing => r8ing >= 0 && r8ing <= 8, msg: 'R8ing must be between 0 and 8' }
->>>>>>> development
     ],   
   },
   m8: { type: Schema.ObjectId, required: true },
