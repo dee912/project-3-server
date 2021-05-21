@@ -12,7 +12,8 @@
   "type": "module",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.12.10"
+    "mongoose": "^5.12.10",
+    "mongoose-hidden": "^1.9.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
