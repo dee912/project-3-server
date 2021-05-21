@@ -1,1 +1,23 @@
-GET http://localhost:4000/api/pl8s
+@baseUrl = http://localhost:4000/api/pl8s
+@id = 60a7d0a08bd688415dcf2d4c
+
+GET {{baseUrl}}
+
+###
+
+GET {{baseUrl}}/{{id}}
+
+###
+POST http://localhost:4000/api//become-a-m8
+content-type: application/json
+
+{
+  "username": "newUser",
+  "email": "newUser@email",
+  "avatar": "this is an image string",
+  "password": "password",
+  "m8s": [],
+  "highScore": 0,
+  "r8dPl8s": []
+}
+
