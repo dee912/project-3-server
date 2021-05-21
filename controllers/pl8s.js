@@ -1,3 +1,5 @@
+import { NotFound } from '../lib/error.js'
+import { NotYours } from '../lib/error.js'
 import Pl8 from '../models/pl8.js'
 
 async function index(req, res, next) {
@@ -22,14 +24,57 @@ async function create(req, res, next) {
   }
 }
 
+async function edit(req, res, next) {
+  try {
+    const currentUserId = req.currentUser._id
+    const pl8 = await Pl8.findById(req.params.id)
 
+    if (!pl8) {
+      throw new NotFound('Pl8 not found.')
+    }
+    
+    if (!currentUserId.equals(pl8.user)) {
+      throw new NotYours('You don\'t own this pl8')
+    }
+    pl8.set(req.body)
+    pl8.save()
+
+    res.status(202).json(pl8)
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function remove(req, res, next) {
+  try {
+    
+    const currentUserId = req.currentUser._id
+
+    const pl8 = await Pl8.findById(req.params.id)
+
+    if (!pl8) {
+      throw new NotFound('Pl8 not found.')
+    }
+    
+    if (!currentUserId.equals(pl8.user)) {
+      throw new NotYours('You don\'t own this pl8')
+    }
+
+    await pl8.deleteOne()
+
+    res.sendStatus(204)
+
+  } catch (e) {
+    next(e)
+  }
+}
 
 async function search(req, res, next) {
   try {
     const searchParams = req.query
     console.log(searchParams)
 
-    const pl8List = await Character.find(searchParams).populate('user')
+    const pl8List = await Pl8.find(searchParams).populate('user')
 
     res.status(200).json(pl8List)
   } catch (e) {
@@ -39,5 +84,8 @@ async function search(req, res, next) {
 
 export default {
   index,
+  create,
+  edit,
+  remove,
   search,
 }
