@@ -1,4 +1,4 @@
-import Pl8 from '../models/pl8s.js'
+import Pl8 from '../models/pl8.js'
 
 async function index(req, res, next) {
   try {
@@ -10,6 +10,20 @@ async function index(req, res, next) {
   }
 }
 
+async function create(req, res, next) {
+  req.body.user = req.currentUser
+
+  try {
+    const newPl8 = await Pl8.create(req.body)
+
+    res.status(201).json(newPl8)
+  } catch (e) {
+    next(e)
+  }
+}
+
+
+
 async function search(req, res, next) {
   try {
     const searchParams = req.query
@@ -17,8 +31,13 @@ async function search(req, res, next) {
 
     const pl8List = await Character.find(searchParams).populate('user')
 
-    res.status(200).json(characterList)
+    res.status(200).json(pl8List)
   } catch (e) {
     next(e)
   }
+}
+
+export default {
+  index,
+  search,
 }
