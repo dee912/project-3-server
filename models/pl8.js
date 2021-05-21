@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import mongooseHidden from 'mongoose-hidden'
 
 const { Schema, model } = mongoose
 
@@ -29,9 +28,5 @@ const pl8 = new Schema({
   cookTime: { type: Number, required: true },
   comments: { type: [comment], required: true },
 })
-
-pl8.plugin(mongooseHidden({ defaultHidden: 
-  { password: true, email: true, _id: true },
-}))
 
 export default model('Pl8', pl8)
