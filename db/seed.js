@@ -17,19 +17,18 @@ async function seedDatabase() {
     const newPl8Data = pl8Data.map(pl8 => {
       return { ...pl8, m8: m8s[0]._id }
     })
-    console.log(newPl8Data)
     const pl8s = await Pl8.create(newPl8Data)
     
-    console.log('here')
     const myComment = { text: 'This is a sexy foot', m8: m8s[0]._id }
-
+    
     const pl8ToCommentOn = pl8s[0]
-
+    
     pl8ToCommentOn.comments.push(myComment)
     await pl8ToCommentOn.save()
     
     await mongoose.connection.close()
-
+    
+    console.log('here')
   } catch (error) {
     console.log('Something went wrong')
     await mongoose.connection.close()
