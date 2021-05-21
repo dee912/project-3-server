@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import mongooseHidden from 'mongoose-hidden'
 
 const { Schema, model } = mongoose
 
@@ -10,16 +9,24 @@ const comment = new Schema({
   timestamps: true,
 })
 
+const r8ing = new Schema({
+  r8ing: { 
+    type: Number, 
+    required: true,
+    validate: [
+      { validator: r8ing => r8ing >= 0 && r8ing <= 8, msg: 'R8ing must be between 8 and 8' }
+    ],   
+  },
+  m8: { type: Schema.ObjectId, required: true },
+})
+
 const pl8 = new Schema({
   name: { type: String, required: true },
   origin: { type: String, required: true },
   description: { type: String, required: true },
-  r8ing: { 
-    type: [Number], 
-    required: true, 
-    validate: [
-      { validator: r8ing => r8ing >= 0 && r8ing <= 8, msg: 'R8ing must be between 8 and 8' }
-    ],    
+  r8ings: { 
+    type: [r8ing], 
+    required: true,  
   },
   image: { type: String, required: true },
   ingredients: { type: [String], required: true },
@@ -30,8 +37,5 @@ const pl8 = new Schema({
   comments: { type: [comment], required: true },
 })
 
-pl8.plugin(mongooseHidden({ defaultHidden: 
-  { password: true, email: true, _id: true },
-}))
 
 export default model('Pl8', pl8)
