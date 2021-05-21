@@ -13,7 +13,7 @@ const pl8 = new Schema({
   name: { type: String, required: true },
   origin: { type: String, required: true },
   description: { type: String, required: true },
-  r8ing: { 
+  r8ings: { 
     type: [Number], 
     required: true, 
     validate: [
@@ -26,7 +26,7 @@ const pl8 = new Schema({
   m8: { type: Schema.ObjectId, required: true },
   prepTime: { type: Number, required: true },
   cookTime: { type: Number, required: true },
-  comments: { type: [comment], required: true },
+  comments: { type: [comment] },
 })
 
 export default model('Pl8', pl8)

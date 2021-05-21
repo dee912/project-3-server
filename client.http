@@ -9,3 +9,19 @@ GET {{baseUrl}}/{{id}}
 
 ###
 
+GET {{baseUrl}}/search?description=meaty
+
+###
+
+POST {{baseUrl}}
+
+{
+  "name": "test",
+  "origin": "test",
+  "description": "test",
+  "image": "test",
+  "ingredients": ["test"],
+  "recipe": ["test"],
+  "prepTime": 10,
+  "cookTime": 10,
+}
