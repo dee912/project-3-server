@@ -1,5 +1,6 @@
 import { NotFound } from '../lib/error.js'
 import { NotYours } from '../lib/error.js'
+import Search from '../lib/hooks/Search.js'
 import Pl8 from '../models/pl8.js'
 
 async function index(req, res, next) {
@@ -71,12 +72,10 @@ async function remove(req, res, next) {
 
 async function search(req, res, next) {
   try {
-    const searchParams = req.query
-    console.log(searchParams)
 
-    const pl8List = await Pl8.find(searchParams).populate('user')
+    const list = await Search(req.query, 'Pl8')
 
-    res.status(200).json(pl8List)
+    res.status(200).json(list)
   } catch (e) {
     next(e)
   }

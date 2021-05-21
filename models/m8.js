@@ -10,6 +10,7 @@ const m8 = new Schema({
   email: { type: String, required: true },
   avatar: { type: String, required: false },
   password: { type: String, required: true },
+  
   m8s: { type: [Schema.ObjectId], ref: 'M8', required: false },
   highScore: { type: Number, required: false },
   r8dPl8s: { type: [Schema.ObjectId], ref: 'Pl8', required: false },
