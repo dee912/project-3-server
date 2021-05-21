@@ -16,11 +16,11 @@ export default function secureRoute(req, res, next) {
       return res.status(401).json({ message: 'Token not valid' })
     }
 
-    const user = await M8.findById(payload.userId)
+    const m8 = await M8.findById(payload.m8Id)
 
-    if (!user) res.status(401).json({ message: 'No M8 matching the token' })
+    if (!m8) res.status(401).json({ message: 'No M8 matching the token' })
 
-    req.currentM8 = user
+    req.currentM8 = m8
 
     next()
   })
