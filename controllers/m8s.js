@@ -1,5 +1,5 @@
 import { secret } from '../config/environment.js'
-import { NotFound, NotValid } from '../lib/error.js'
+import { NotValid, NotFound } from '../lib/error.js'
 import M8 from '../models/m8.js'
 import jwt from 'jsonwebtoken'
 
