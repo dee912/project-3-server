@@ -31,11 +31,7 @@ const pl8 = new Schema({
   image: { type: String, required: true },
   ingredients: { type: [String], required: true },
   recipe: { type: [String], required: true },
-<<<<<<< HEAD
-  // m8: { type: Schema.ObjectId, required: true },
-=======
   m8: { type: Schema.ObjectId, ref: 'M8', required: true },
->>>>>>> development
   prepTime: { type: Number, required: true },
   cookTime: { type: Number, required: true },
   comments: { type: [comment] },
