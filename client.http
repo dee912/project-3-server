@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:4000/api/pl8s
-@id = 60a7d0a08bd688415dcf2d4c
+@id = 60a8e493018286dd93cb188a
 
 GET {{baseUrl}}
 
@@ -29,6 +29,8 @@ GET {{baseUrl}}/search?description=meaty
 ###
 
 POST {{baseUrl}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhOGU5NTkxZjhhYjNkZGI1OWU5NDI2IiwiaWF0IjoxNjIxNjg1NDI0LCJleHAiOjE2MjE3Mjg2MjR9._AbQ4t7KDuaNvi8gK6NBbUfmR-kIZBsp0wU67XN6n7I
+content-type: application/json
 
 {
   "name": "test",
@@ -38,7 +40,7 @@ POST {{baseUrl}}
   "ingredients": ["test"],
   "recipe": ["test"],
   "prepTime": 10,
-  "cookTime": 10,
+  "cookTime": 10
 }
 
 ###
@@ -46,7 +48,7 @@ POST http://localhost:4000/api/login
 content-type: application/json
 
 {
-  "email": "newUser@email",
-  "password": "password"
+  "email": "dom@dom",
+  "password": "dom"
 }
 
