@@ -12,7 +12,7 @@ export default [
   {
     username: 'Devante',
     email: 'devante@email',
-    avatar: 'this is an image string',
+    avatar: 'https://i2-prod.liverpoolecho.co.uk/incoming/article15973166.ece/ALTERNATES/s615/53766573_466516517491863_242613266507890688_n.jpg',
     password: 'password',
     passwordConfirmation: 'password',
     m8s: [],

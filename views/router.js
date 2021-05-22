@@ -25,4 +25,7 @@ router.route('/login')
   .post(m8sController.login)
 export default router
 
+router.route('/m8/:id')
+  .get(m8sController.show)
+
 //! profile page

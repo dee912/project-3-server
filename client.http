@@ -1,6 +1,10 @@
 @baseUrl = http://localhost:4000/api/pl8s
 @id = 60a7d0a08bd688415dcf2d4c
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhOGY0NWU0NDYyYTY2ZTY4OTQ3YTVlIiwiaWF0IjoxNjIxNjg1MzUzLCJleHAiOjE2MjE3Mjg1NTN9.Ox4VnYgE1_f8dsPDm7lnpOkKGvwWKmit9vVjYrmqhqo
+
+@m8Id = 60a8f45e4462a66e68947a5e
+
 GET {{baseUrl}}
 
 ###
@@ -12,9 +16,9 @@ POST http://localhost:4000/api/become-a-m8
 content-type: application/json
 
 {
-  "username": "newUser",
-  "email": "newUser@email",
-  "avatar": "this is an image string",
+  "username": "newUser1",
+  "email": "newUser@email1",
+  "avatar": "https://i2-prod.liverpoolecho.co.uk/incoming/article15973166.ece/ALTERNATES/s615/53766573_466516517491863_242613266507890688_n.jpg",
   "password": "password",
   "passwordConfirmation": "password",
   "m8s": [],
@@ -24,11 +28,34 @@ content-type: application/json
 
 ###
 
+POST http://localhost:4000/api/login
+content-type: application/json
+
+{
+  "email": "newUser@email1",
+  "password": "password"
+}
+
+###
+
 GET {{baseUrl}}/search?description=meaty
 
 ###
 
+
+POST http://localhost:4000/api/login
+content-type: application/json
+
+{
+  "email": "newUser@email",
+  "password": "password"
+}
+
+###
+
 POST {{baseUrl}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "test",
@@ -38,15 +65,16 @@ POST {{baseUrl}}
   "ingredients": ["test"],
   "recipe": ["test"],
   "prepTime": 10,
-  "cookTime": 10,
+  "cookTime": 10
 }
 
 ###
-POST http://localhost:4000/api/login
-content-type: application/json
 
-{
-  "email": "newUser@email",
-  "password": "password"
-}
+GET http://localhost:4000/api/m8s/{{m8Id}}
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
 
+###
+
+DELETE {{baseUrl}}/60a8d96b1aa94c6339385b09
+Authorization: Bearer {{token}}

@@ -1,5 +1,5 @@
 import { secret } from '../config/environment.js'
-import { NotValid } from '../lib/error.js'
+import { NotFound, NotValid } from '../lib/error.js'
 import M8 from '../models/m8.js'
 import jwt from 'jsonwebtoken'
 
@@ -27,7 +27,21 @@ async function login(req, res, next) {
       secret,
       { expiresIn: '12h' }
     )
-    res.status(202).json({ message: 'Login successful', token })
+    res.status(202).json({ message: 'Login successful', token, id: m8._id })
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function show(req, res, next) {
+  try {
+    const m8 = await M8.findById(req.params.id).populate('user')
+
+    if (!m8) {
+      throw new NotFound('M8 not found.')
+    }
+
+    res.status(200).json(m8)
   } catch (error) {
     next(error)
   }
@@ -36,4 +50,5 @@ async function login(req, res, next) {
 export default {
   register,
   login,
+  show,
 }
