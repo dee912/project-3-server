@@ -62,10 +62,20 @@ async function edit(req, res, next) {
     next(error)
   }
 }
+async function index(req, res, next) {
+  try {
+    const pl8List = await M8.find()
+
+    res.status(200).json(pl8List)
+  } catch (e) {
+    next(e)
+  }
+}
 
 export default {
   register,
   login,
   show,
   edit,
+  index,
 }

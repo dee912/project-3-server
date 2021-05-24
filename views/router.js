@@ -24,10 +24,12 @@ router.route('/become-a-m8')
 
 router.route('/login')
   .post(m8sController.login)
-export default router
 
 router.route('/m8/:id')
   .get(m8sController.show)
   .put(secureRoute, m8sController.edit)
 
-//! profile page
+router.route('/m8s')
+  .get(m8sController.index)
+
+export default router

@@ -31,6 +31,10 @@ const pl8 = new Schema({
   image: { type: String, required: true },
   ingredients: { type: [String], required: true },
   recipe: { type: [String], required: true },
+<<<<<<< HEAD
+=======
+
+>>>>>>> a0d56994d743b205f6970aa3b068f50f6496dc74
   m8: { type: Schema.ObjectId, ref: 'M8', required: true },
   prepTime: { type: Number, required: true },
   cookTime: { type: Number, required: true },

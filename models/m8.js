@@ -45,7 +45,11 @@ m8
 
 m8.plugin(uniqueValidator)
 m8.plugin(mongooseHidden({ defaultHidden: 
+<<<<<<< HEAD
   { password: true, email: true },
+=======
+  { password: true, email: true, _id: false },
+>>>>>>> a0d56994d743b205f6970aa3b068f50f6496dc74
 }))
 
 export default model('M8', m8)
