@@ -2,6 +2,7 @@ import express from 'express'
 
 import pl8Controller from '../controllers/pl8s.js'
 import m8sController from '../controllers/m8s.js'
+import secureRoute from '../middleware/secureRoute.js'
 // import commentController from '../controllers/comments'
 
 const router = express.Router()
@@ -27,5 +28,6 @@ export default router
 
 router.route('/m8/:id')
   .get(m8sController.show)
+  .put(secureRoute, m8sController.edit)
 
 //! profile page

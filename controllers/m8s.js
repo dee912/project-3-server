@@ -47,8 +47,25 @@ async function show(req, res, next) {
   }
 }
 
+async function edit(req, res, next) {
+  try {
+    const currentM8Id = req.currentM8._id
+    const m8 = await M8.findById(currentM8Id)
+
+    if (!currentM8Id.equals(m8._id)) {
+      return res.status(401).json({ message: 'Not the correct user' })
+    }
+
+    const updatedM8 = await m8.updateOne(req.body, { new: true })
+    res.status(200).json(updatedM8)
+  } catch (error) {
+    next(error)
+  }
+}
+
 export default {
   register,
   login,
   show,
+  edit,
 }

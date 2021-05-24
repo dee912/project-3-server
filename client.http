@@ -47,7 +47,7 @@ POST http://localhost:4000/api/login
 content-type: application/json
 
 {
-  "email": "newUser@email",
+  "email": "devante@email",
   "password": "password"
 }
 
@@ -77,3 +77,14 @@ content-type: application/json
 
 DELETE {{baseUrl}}/60a8d96b1aa94c6339385b09
 Authorization: Bearer {{token}}
+
+
+###
+PUT http://localhost:4000/api/m8/60a91fa365ab025de982a434
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhYjc0OTVhYWQ1MzIwZDEwNjRjZTVjIiwiaWF0IjoxNjIxODY2MzM2LCJleHAiOjE2MjE5MDk1MzZ9.YOf8B1X5GTHSItwtgOuO_vPn5Vhz-AFydtAUhdO8i7E
+Content-Type: application/json
+
+{
+  "username": "New name",
+  "bio": "new bio"
+}

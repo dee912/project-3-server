@@ -14,6 +14,7 @@ const m8 = new Schema({
   m8s: { type: [Schema.ObjectId], ref: 'M8', required: false },
   highScore: { type: Number, required: false },
   r8dPl8s: { type: [Schema.ObjectId], ref: 'Pl8', required: false },
+  bio: { type: String, required: false },
 })
 
 m8.pre('save', function hashPassword(next) {
@@ -44,7 +45,7 @@ m8
 
 m8.plugin(uniqueValidator)
 m8.plugin(mongooseHidden({ defaultHidden: 
-  { password: true, email: true, _id: true },
+  { password: true, email: true },
 }))
 
 export default model('M8', m8)
