@@ -16,7 +16,7 @@ async function create(req, res, next) {
 
     const savedPl8 = await pl8.save()
 
-    res.send(savedPl8)
+    res.status(201).json(savedPl8)
   } catch (e) {
     next(e)
   }
@@ -39,9 +39,11 @@ async function edit(req, res, next) {
     }
 
     comment.set(req.body)
-    const savedPl8 = await pl8.save()
+    await pl8.save()
 
-    res.send(savedPl8)
+    const newComment = pl8.comments.id(commentId)
+
+    res.status(200).json(newComment)
   } catch (e) {
     next(e)
   }
@@ -60,10 +62,10 @@ async function remove(req, res, next) {
     const comment = pl8.comments.id(commentId)
 
     if (!req.currentM8._id.equals(comment.m8)) {
-      throw new NotYours('You don\'t own this pl8')
+      throw new NotYours('You don\'t own this comment')
     }
-    
-    await pl8.deleteOne()
+    comment.remove()
+    await pl8.save()
 
     res.sendStatus(204)
 

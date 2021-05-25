@@ -21,7 +21,11 @@ router.route('/pl8s/:id')
 
 router.route('/pl8/:id/comment')
   .post(secureRoute, commentController.create)
-  
+
+router.route('/pl8/:pl8Id/comment/:commentId')
+  .put(secureRoute, commentController.edit)
+  .delete(secureRoute, commentController.remove)
+
 router.route('/pl8s/:id/r8ings')
   .post(secureRoute, pl8Controller.newR8ing)
 
