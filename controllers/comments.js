@@ -1,8 +1,8 @@
-import Pl8 from '../models/pl8'
+import Pl8 from '../models/pl8.js'
 import { NotFound, NotYours } from '../lib/error.js'
 
 async function create(req, res, next) {
-  req.body.user = req.currentUser
+  req.body.m8 = req.currentM8._id
   try {
     const pl8 = await Pl8.findById(req.params.id) 
       .populate('user')
@@ -34,7 +34,7 @@ async function edit(req, res, next) {
 
     const comment = pl8.comments.id(commentId)
 
-    if (!req.currentUser._id.equals(comment.user)) {
+    if (!req.currentM8._id.equals(comment.m8)) {
       throw new NotYours('You don\'t own this pl8')
     }
 
@@ -59,7 +59,7 @@ async function remove(req, res, next) {
 
     const comment = pl8.comments.id(commentId)
 
-    if (!req.currentUser._id.equals(comment.user)) {
+    if (!req.currentM8._id.equals(comment.m8)) {
       throw new NotYours('You don\'t own this pl8')
     }
     

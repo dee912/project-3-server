@@ -54,13 +54,8 @@ content-type: application/json
 ###
 
 POST {{baseUrl}}
-<<<<<<< HEAD
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhOGU5NTkxZjhhYjNkZGI1OWU5NDI2IiwiaWF0IjoxNjIxNjg1NDI0LCJleHAiOjE2MjE3Mjg2MjR9._AbQ4t7KDuaNvi8gK6NBbUfmR-kIZBsp0wU67XN6n7I
-content-type: application/json
-=======
 Content-Type: application/json
 Authorization: Bearer {{token}}
->>>>>>> a0d56994d743b205f6970aa3b068f50f6496dc74
 
 {
   "name": "test",
@@ -91,7 +86,7 @@ Authorization: Bearer {{token}}
 
 ###
 PUT http://localhost:4000/api/m8/60a91fa365ab025de982a434
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhYjc0OTVhYWQ1MzIwZDEwNjRjZTVjIiwiaWF0IjoxNjIxODY2MzM2LCJleHAiOjE2MjE5MDk1MzZ9.YOf8B1X5GTHSItwtgOuO_vPn5Vhz-AFydtAUhdO8i7E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhYjc0OTVhYWQ1MzIwZDEwNjRjZTVjIiwiaWF0IjoxNjIxOTQ4NDY3LCJleHAiOjE2MjE5OTE2Njd9.Q9v_bTrumMvxb4IIOmeC-r--cyKKjBSj575rAZ6DUbI
 Content-Type: application/json
 
 {
@@ -102,3 +97,12 @@ Content-Type: application/json
 PUT http://localhost:4000/api/m8s/{{m8Id}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+###
+POST http://localhost:4000/api/pl8/60ab7496aad5320d1064ce5e/comment
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhYjc0OTVhYWQ1MzIwZDEwNjRjZTVjIiwiaWF0IjoxNjIxOTQ4NDY3LCJleHAiOjE2MjE5OTE2Njd9.Q9v_bTrumMvxb4IIOmeC-r--cyKKjBSj575rAZ6DUbI
+Content-Type: application/json
+
+{
+  "text": "this is another new comment"
+}

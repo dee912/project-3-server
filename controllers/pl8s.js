@@ -14,7 +14,7 @@ async function index(req, res, next) {
 }
 
 async function create(req, res, next) {
-  req.body.user = req.currentUser
+  req.body.m8 = req.currentM8._id
 
   try {
     const newPl8 = await Pl8.create(req.body)
