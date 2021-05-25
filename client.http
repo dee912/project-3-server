@@ -106,3 +106,13 @@ Content-Type: application/json
 {
   "text": "this is another new comment"
 }
+
+###
+
+PUT {{baseUrl}}/60acf7d62cfaac7979ac9cac/r8ings/60acf81c23f86e79953136ee
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtOElkIjoiNjBhY2Y3ZDYyY2ZhYWM3OTc5YWM5Y2FhIiwiaWF0IjoxNjIxOTQ4MzkzLCJleHAiOjE2MjE5OTE1OTN9.cejf4yafuwwW8zTJJzEoKgjSpAgTp7F73wbBildEK40
+content-type: application/json
+
+{
+  "r8ing": 5
+}

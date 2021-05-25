@@ -21,6 +21,12 @@ router.route('/pl8s/:id')
 
 router.route('/pl8/:id/comment')
   .post(secureRoute, commentController.create)
+  
+router.route('/pl8s/:id/r8ings')
+  .post(secureRoute, pl8Controller.newR8ing)
+
+router.route('/pl8s/:pl8Id/r8ings/:r8ingId')
+  .put(secureRoute, pl8Controller.editR8ing)
 
 router.route('/become-a-m8')
   .post(m8sController.register)
