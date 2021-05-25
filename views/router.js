@@ -18,6 +18,7 @@ router.route('/pl8s/:id')
   .get(pl8Controller.show)
   .delete(pl8Controller.remove)
   .put(pl8Controller.edit)
+  .post(secureRoute, pl8Controller.newR8ing)
 
 router.route('/become-a-m8')
   .post(m8sController.register)
