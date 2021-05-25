@@ -95,6 +95,38 @@ async function show(req, res, next) {
   }
 }
 
+async function newR8ing(req, res, next) {
+  try {
+    const currentM8Id = req.currentM8._id
+    req.body.m8 = currentM8Id
+    const newR8ing = req.body
+    const pl8 = await Pl8.findById(req.params.id)
+    if (!pl8) throw new NotFound('No Pl8 Found')
+    pl8.r8ings.push(newR8ing)
+    const r8ing = await pl8.save()
+    res.status(201).json(r8ing)
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function editR8ing(req, res, next) {
+  try {
+    const pl8 = await Pl8.findById(req.params.pl8Id)
+    if (!pl8) throw new NotFound('No Pl8 Found')
+    const r8ing = pl8.r8ings.id(req.params.r8ingId)
+    if (!r8ing) throw new NotFound('No r8ing found')
+    if (!req.currentM8._id.equals(r8ing.m8)) {
+      return res.status(401).send({ message: 'not the person who made this r8ing' })
+    }
+    r8ing.set(req.body)
+    const updatedR8ing = await pl8.save()
+    res.status(200).json(updatedR8ing)
+  } catch (error) {
+    next(error)
+  }
+}
+
 export default {
   index,
   create,
@@ -102,4 +134,6 @@ export default {
   remove,
   search,
   show,
+  newR8ing,
+  editR8ing,
 }
