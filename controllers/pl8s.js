@@ -83,7 +83,9 @@ async function search(req, res, next) {
 
 async function show(req, res, next) {
   try {
-    const pl8 = await Pl8.findById(req.params.id).populate('m8')
+    const pl8 = await Pl8.findById(req.params.id)
+      .populate('m8')
+      .populate('comments.m8')
 
     if (!pl8) {
       throw new NotFound('Pl8 not found.')
