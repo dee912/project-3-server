@@ -8,7 +8,7 @@ const { Schema, model } = mongoose
 const m8 = new Schema({
   username: { type: String, required: true },
   email: { type: String, required: true },
-  avatar: { type: String, required: false },
+  avatar: { type: String, required: true },
   password: { type: String, required: true },
   
   m8s: { type: [Schema.ObjectId], ref: 'M8', required: false },

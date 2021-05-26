@@ -2,7 +2,7 @@ export default [
   {
     username: 'Chris',
     email: 'chris@email',
-    avatar: 'this is an image string',
+    avatar: 'https://i.stack.imgur.com/l60Hf.png',
     password: 'password',
     passwordConfirmation: 'password',
     m8s: [],
@@ -22,7 +22,7 @@ export default [
   {
     username: 'Dom',
     email: 'dom@email',
-    avatar: 'this is an image string',
+    avatar: 'https://i.stack.imgur.com/l60Hf.png',
     password: 'password',
     passwordConfirmation: 'password',
     m8s: [],
