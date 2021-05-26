@@ -16,8 +16,8 @@ router.route('/pl8s/search')
 
 router.route('/pl8s/:id')
   .get(pl8Controller.show)
-  .delete(pl8Controller.remove)
-  .put(pl8Controller.edit)
+  .delete(secureRoute, pl8Controller.remove)
+  .put(secureRoute, pl8Controller.edit)
 
 router.route('/pl8/:id/comment')
   .post(secureRoute, commentController.create)
@@ -41,6 +41,7 @@ router.route('/login')
 router.route('/m8/:id')
   .get(m8sController.show)
   .put(secureRoute, m8sController.edit)
+  .delete(secureRoute, m8sController.remove)
 
 router.route('/m8s')
   .get(m8sController.index)

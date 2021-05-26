@@ -28,14 +28,14 @@ async function create(req, res, next) {
 
 async function edit(req, res, next) {
   try {
-    const currentUserId = req.currentUser._id
+    const currentUserId = req.currentM8._id
     const pl8 = await Pl8.findById(req.params.id)
 
     if (!pl8) {
       throw new NotFound('Pl8 not found.')
     }
     
-    if (!currentUserId.equals(pl8.user)) {
+    if (!currentUserId.equals(pl8.m8)) {
       throw new NotYours('You don\'t own this pl8')
     }
     pl8.set(req.body)
@@ -50,7 +50,8 @@ async function edit(req, res, next) {
 async function remove(req, res, next) {
   try {
     
-    const currentUserId = req.currentUser._id
+    const currentUserId = req.currentM8._id
+    console.log(currentUserId)
 
     const pl8 = await Pl8.findById(req.params.id)
 
@@ -58,7 +59,7 @@ async function remove(req, res, next) {
       throw new NotFound('Pl8 not found.')
     }
     
-    if (!currentUserId.equals(pl8.user)) {
+    if (!currentUserId.equals(pl8.m8)) {
       throw new NotYours('You don\'t own this pl8')
     }
 

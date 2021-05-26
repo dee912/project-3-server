@@ -1,5 +1,5 @@
 import { secret } from '../config/environment.js'
-import { NotValid, NotFound } from '../lib/error.js'
+import { NotValid, NotFound, NotYours } from '../lib/error.js'
 import M8 from '../models/m8.js'
 import jwt from 'jsonwebtoken'
 
@@ -73,10 +73,36 @@ async function index(req, res, next) {
   }
 }
 
+async function remove(req, res, next) {
+  try {
+    
+    const currentUserId = req.currentM8._id
+    console.log(currentUserId)
+
+    const m8 = await M8.findById(req.params.id)
+
+    if (!m8) {
+      throw new NotFound('M8 not found.')
+    }
+    
+    if (!currentUserId.equals(m8._id)) {
+      throw new NotYours('ThIs IsNT YoUr PrOfIlE!!!')
+    }
+
+    await m8.deleteOne()
+
+    res.sendStatus(204)
+
+  } catch (e) {
+    next(e)
+  }
+}
+
 export default {
   register,
   login,
   show,
   edit,
   index,
+  remove,
 }
