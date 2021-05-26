@@ -35,7 +35,8 @@ async function login(req, res, next) {
 
 async function show(req, res, next) {
   try {
-    const m8 = await M8.findById(req.params.id).populate('user')
+    const m8 = await M8.findById(req.params.id)
+      .populate('r8dPl8s')
 
     if (!m8) {
       throw new NotFound('M8 not found.')

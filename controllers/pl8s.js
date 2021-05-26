@@ -1,6 +1,7 @@
 import { NotFound } from '../lib/error.js'
 import { NotYours } from '../lib/error.js'
 import Search from '../lib/hooks/Search.js'
+import M8 from '../models/m8.js'
 import Pl8 from '../models/pl8.js'
 
 async function index(req, res, next) {
@@ -106,6 +107,11 @@ async function newR8ing(req, res, next) {
     if (!pl8) throw new NotFound('No Pl8 Found')
     pl8.r8ings.push(newR8ing)
     const r8ing = await pl8.save()
+    
+    const m8 = await M8.findById(req.currentM8._id)
+    m8.r8dPl8s.push(pl8._id)
+    await m8.save()
+
     res.status(201).json(r8ing)
   } catch (error) {
     next(error)
