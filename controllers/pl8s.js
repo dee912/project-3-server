@@ -105,6 +105,7 @@ async function newR8ing(req, res, next) {
     req.body.m8 = currentM8Id
     const newR8ing = req.body
     const pl8 = await Pl8.findById(req.params.id)
+      .populate('m8')
     if (!pl8) throw new NotFound('No Pl8 Found')
     pl8.r8ings.push(newR8ing)
     const r8ing = await pl8.save()
@@ -122,6 +123,7 @@ async function newR8ing(req, res, next) {
 async function editR8ing(req, res, next) {
   try {
     const pl8 = await Pl8.findById(req.params.pl8Id)
+      .populate('m8')
     if (!pl8) throw new NotFound('No Pl8 Found')
     const r8ing = pl8.r8ings.id(req.params.r8ingId)
     if (!r8ing) throw new NotFound('No r8ing found')
