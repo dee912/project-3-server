@@ -59,6 +59,7 @@ async function remove(req, res, next) {
       throw new NotFound('Pl8 not found.')
     }
 
+    console.log(pl8.comments)
     const comment = pl8.comments.id(commentId)
 
     if (!req.currentM8._id.equals(comment.m8)) {

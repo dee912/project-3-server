@@ -43,6 +43,13 @@ router.route('/m8/:id')
   .put(secureRoute, m8sController.edit)
   .delete(secureRoute, m8sController.remove)
 
+router.route('/m8/add')
+  .post(secureRoute, m8sController.add)
+
+router.route('/m8/remove/:id')
+  .delete(secureRoute, m8sController.deleteAM8)
+
+
 router.route('/m8s')
   .get(m8sController.index)
 

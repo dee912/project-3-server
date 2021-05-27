@@ -98,6 +98,45 @@ async function remove(req, res, next) {
   }
 }
 
+async function add(req, res, next) {
+  try {
+    const m8 = await M8.findById(req.currentM8._id) 
+
+    if (!m8) {
+      throw new NotFound('M8 not found.')
+    }
+
+    m8.m8s.push(req.body.m8)
+
+    await m8.save()
+
+    res.status(201).json(m8)
+  } catch (e) {
+    next(e)
+  }
+}
+
+async function deleteAM8(req, res, next) {
+  try {
+    const { id } = req.params
+
+    const m8 = await M8.findById(req.currentM8._id)
+    if (!m8) {
+      throw new NotFound('M8 not found.')
+    }
+    
+    const index = m8.m8s.findIndex(ids => {
+      return String(ids) === id
+    })
+    m8.m8s.splice(index, 1)
+    await m8.save()
+    res.status(200).json(m8)
+
+  } catch (e) {
+    next(e)
+  }
+}
+
 export default {
   register,
   login,
@@ -105,4 +144,6 @@ export default {
   edit,
   index,
   remove,
+  add,
+  deleteAM8,
 }
