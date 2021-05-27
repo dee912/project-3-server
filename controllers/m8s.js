@@ -77,7 +77,6 @@ async function remove(req, res, next) {
   try {
     
     const currentUserId = req.currentM8._id
-    console.log(currentUserId)
 
     const m8 = await M8.findById(req.params.id)
 
