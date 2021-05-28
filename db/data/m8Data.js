@@ -8,6 +8,7 @@ export default [
     m8s: [],
     highScore: 0,
     r8dPl8s: [],
+    deleted: false,
   },
   {
     username: 'Devante',
@@ -18,6 +19,7 @@ export default [
     m8s: [],
     highScore: 0,
     r8dPl8s: [],
+    deleted: false,
   },
   {
     username: 'Dom',
@@ -28,5 +30,6 @@ export default [
     m8s: [],
     highScore: 0,
     r8dPl8s: [],
+    deleted: false,
   }
 ]

@@ -2,11 +2,22 @@ import { secret } from '../config/environment.js'
 import { NotValid, NotFound, NotYours } from '../lib/error.js'
 import M8 from '../models/m8.js'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 async function register(req, res, next) {
   try {
-    const newM8 = await M8.create(req.body)
-    res.status(201).json(newM8)
+    const m8 = await M8.findOne({ email: req.body.email })
+    if (m8 && m8.body.deleted !== undefined) {
+      req.body.deleted = false
+      req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
+      console.log(req.body.password)
+      const reactivatedM8 = await m8.updateOne(req.body, { new: true })
+      res.status(201).json(reactivatedM8)
+    } else {
+      req.body.deleted = false
+      const newM8 = await M8.create(req.body)
+      res.status(201).json(newM8)
+    }
   } catch (error) {
     next(error)
   }
@@ -21,6 +32,9 @@ async function login(req, res, next) {
     const isValidPw = m8.validatePassword(req.body.password)
     if (!isValidPw) {
       throw new NotValid('There was a problem logging in')
+    }
+    if (m8.deleted === true) {
+      throw new NotValid('This acount has been "Deleted"')
     }
     const token = jwt.sign(
       { m8Id: m8._id },
@@ -75,7 +89,7 @@ async function index(req, res, next) {
 
 async function remove(req, res, next) {
   try {
-    
+
     const currentUserId = req.currentM8._id
 
     const m8 = await M8.findById(req.params.id)
@@ -83,12 +97,13 @@ async function remove(req, res, next) {
     if (!m8) {
       throw new NotFound('M8 not found.')
     }
-    
+
     if (!currentUserId.equals(m8._id)) {
       throw new NotYours('ThIs IsNT YoUr PrOfIlE!!!')
     }
 
-    await m8.deleteOne()
+    m8.deleted = true
+    await m8.save()
 
     res.sendStatus(204)
 
@@ -99,7 +114,7 @@ async function remove(req, res, next) {
 
 async function add(req, res, next) {
   try {
-    const m8 = await M8.findById(req.currentM8._id) 
+    const m8 = await M8.findById(req.currentM8._id)
 
     if (!m8) {
       throw new NotFound('M8 not found.')
@@ -123,7 +138,7 @@ async function deleteAM8(req, res, next) {
     if (!m8) {
       throw new NotFound('M8 not found.')
     }
-    
+
     const index = m8.m8s.findIndex(ids => {
       return String(ids) === id
     })

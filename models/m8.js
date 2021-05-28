@@ -10,20 +10,23 @@ const m8 = new Schema({
   email: { type: String, required: true },
   avatar: { type: String, required: true },
   password: { type: String, required: true },
-  
+
   m8s: { type: [Schema.ObjectId], ref: 'M8', required: false },
   highScore: { type: Number, required: false },
   r8dPl8s: { type: [Schema.ObjectId], ref: 'Pl8', required: false },
   bio: { type: String, required: false },
+  deleted: { type: Boolean, required: true },
 })
 
 m8.pre('save', function hashPassword(next) {
   if (this.isModified('password')) {
     this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
   }
-  
+
   next()
 })
+
+
 
 m8.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
@@ -43,9 +46,12 @@ m8
     next()
   })
 
+
+
 m8.plugin(uniqueValidator)
-m8.plugin(mongooseHidden({ defaultHidden: 
-  { password: true, email: true },
+m8.plugin(mongooseHidden({
+  defaultHidden:
+    { password: true, email: true },
 }))
 
 export default model('M8', m8)
