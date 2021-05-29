@@ -1,18 +1,24 @@
 import { secret } from '../config/environment.js'
-import { NotValid, NotFound, NotYours } from '../lib/error.js'
+import { NotValid, NotFound, NotYours, EmailNotUnique } from '../lib/error.js'
 import M8 from '../models/m8.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 async function register(req, res, next) {
   try {
+    console.log('I am APPEARING IN THE CORRECT AREA')
     const m8 = await M8.findOne({ email: req.body.email })
-    if (m8 && req.body.deleted !== undefined) {
-      req.body.deleted = false
-      req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
-      console.log(req.body.password)
-      const reactivatedM8 = await m8.updateOne(req.body, { new: true })
-      res.status(201).json(reactivatedM8)
+    console.log(m8)
+    if (m8) {
+      if (m8.deleted) {
+        req.body.deleted = false
+        req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
+        console.log(req.body.password)
+        const reactivatedM8 = await m8.updateOne(req.body, { new: true })
+        res.status(201).json(reactivatedM8)
+      } else {
+        throw new EmailNotUnique('This email is taken')
+      }
     } else {
       req.body.deleted = false
       const newM8 = await M8.create(req.body)

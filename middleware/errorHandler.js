@@ -12,7 +12,6 @@ export default function errorHandler(err, req, res, next) {
     return res.status(418).json({ message: 'This pl8 doesn\'t belong to you' })
   }
   if (err.name === 'ValidationError') {
-    console.log('HERE IS THE ERROR', err.errors)
     const errorToReturn = {}
     if (err.errors.username) {
       errorToReturn.username = err.errors.username.message
@@ -24,6 +23,12 @@ export default function errorHandler(err, req, res, next) {
       errorToReturn.password = err.errors.password.message
     }
     return res.status(400).json( errorToReturn )
+  }
+  if (err.name === 'EmailNotUnique') {
+    return res.status(400).json({ email: 'This email is already taken' })
+  }
+  if (err.name === 'MongoError') {
+    return res.status(400).json({ username: 'This username is alreay taken' })
   }
 
   res.sendStatus(500)
