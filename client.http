@@ -16,7 +16,7 @@ POST http://localhost:4000/api/become-a-m8
 content-type: application/json
 
 {
-  "username": "newUser1",
+  "username": "Devante",
   "email": "newUser@email1",
   "avatar": "https://i2-prod.liverpoolecho.co.uk/incoming/article15973166.ece/ALTERNATES/s615/53766573_466516517491863_242613266507890688_n.jpg",
   "password": "password",

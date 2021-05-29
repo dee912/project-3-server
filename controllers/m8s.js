@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt'
 async function register(req, res, next) {
   try {
     const m8 = await M8.findOne({ email: req.body.email })
-    if (m8 && m8.body.deleted !== undefined) {
+    if (m8 && req.body.deleted !== undefined) {
       req.body.deleted = false
       req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
       console.log(req.body.password)

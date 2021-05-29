@@ -1,7 +1,6 @@
 export default function errorHandler(err, req, res, next) {
   console.log('There was an error')
   console.log(err.name)
-  console.log(err)
 
   if (err.name === 'CastError') {
     return res.status(400).json({ message: 'Invalid parameter given' })
@@ -13,7 +12,18 @@ export default function errorHandler(err, req, res, next) {
     return res.status(418).json({ message: 'This pl8 doesn\'t belong to you' })
   }
   if (err.name === 'ValidationError') {
-    return res.status(400).json({ message: 'Missing/Incorrect parameters' })
+    console.log('HERE IS THE ERROR', err.errors)
+    const errorToReturn = {}
+    if (err.errors.username) {
+      errorToReturn.username = err.errors.username.message
+    }
+    if (err.errors.email) {
+      errorToReturn.email = err.errors.email.message
+    }
+    if (err.errors.password) {
+      errorToReturn.password = err.errors.password.message
+    }
+    return res.status(400).json( errorToReturn )
   }
 
   res.sendStatus(500)
