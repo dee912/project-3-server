@@ -19,7 +19,7 @@ async function seedDatabase() {
     })
     const pl8s = await Pl8.create(newPl8Data)
     
-    const myComment = { text: 'This is a sexy foot', m8: m8s[0]._id }
+    const myComment = { text: 'Perfect dish', m8: m8s[0]._id }
     
     const pl8ToCommentOn = pl8s[0]
     
