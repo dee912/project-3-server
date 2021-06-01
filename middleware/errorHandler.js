@@ -30,6 +30,9 @@ export default function errorHandler(err, req, res, next) {
   if (err.name === 'MongoError') {
     return res.status(400).json({ username: 'This username is alreay taken' })
   }
+  if (err.name === 'NoPassword') {
+    return res.status(400).json({ password: 'A password is required' })
+  }
 
   res.sendStatus(500)
 

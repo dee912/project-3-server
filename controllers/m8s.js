@@ -1,5 +1,5 @@
 import { secret } from '../config/environment.js'
-import { NotValid, NotFound, NotYours, EmailNotUnique } from '../lib/error.js'
+import { NotValid, NotFound, NotYours, EmailNotUnique, NoPassword } from '../lib/error.js'
 import M8 from '../models/m8.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
@@ -12,6 +12,7 @@ async function register(req, res, next) {
     if (m8) {
       if (m8.deleted) {
         req.body.deleted = false
+        if (req.body.password === '') throw new NoPassword('A Password is Required')
         req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
         console.log(req.body.password)
         const reactivatedM8 = await m8.updateOne(req.body, { new: true })
