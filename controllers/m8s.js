@@ -22,6 +22,7 @@ async function register(req, res, next) {
       }
     } else {
       req.body.deleted = false
+      req.body.highScore = 0
       const newM8 = await M8.create(req.body)
       res.status(201).json(newM8)
     }

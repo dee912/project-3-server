@@ -22,6 +22,27 @@ export default function errorHandler(err, req, res, next) {
     if (err.errors.password) {
       errorToReturn.password = err.errors.password.message
     }
+    if (err.errors.name) {
+      errorToReturn.name = err.errors.name.message
+    }
+    if (err.errors.origin) {
+      errorToReturn.origin = err.errors.origin.message
+    }
+    if (err.errors.description) {
+      errorToReturn.description = err.errors.description.message
+    }
+    if (err.errors.ingredients) {
+      errorToReturn.ingredients = err.errors.ingredients.message
+    }
+    if (err.errors.recipe) {
+      errorToReturn.recipe = err.errors.recipe.message
+    }
+    if (err.errors.prepTime) {
+      errorToReturn.prepTime = err.errors.prepTime.message
+    }
+    if (err.errors.cookTime) {
+      errorToReturn.cookTime = err.errors.cookTime.message
+    }
     return res.status(400).json( errorToReturn )
   }
   if (err.name === 'EmailNotUnique') {
