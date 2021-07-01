@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "npx nodemon server.js",
     "start": "node server.js",
-    "test": "node --experimental-vm-modules --no-warnings  node_modules/.bin/jest -i --verbose --watch"
+    "test": "node --experimental-vm-modules --no-warnings  node_modules/.bin/jest -i --verbose --watch",
+    "seed:dev": "node db/seeds.js",
+    "seed:prod": "NODE_ENV=production node db/seed.js"
   },
   "author": "",
   "license": "ISC",
