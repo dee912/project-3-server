@@ -26,8 +26,6 @@ m8.pre('save', function hashPassword(next) {
   next()
 })
 
-
-
 m8.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
 }
@@ -45,8 +43,6 @@ m8
     }
     next()
   })
-
-
 
 m8.plugin(uniqueValidator)
 m8.plugin(mongooseHidden({

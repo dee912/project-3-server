@@ -6,7 +6,6 @@ import bcrypt from 'bcrypt'
 
 async function register(req, res, next) {
   try {
-    console.log('I am APPEARING IN THE CORRECT AREA')
     const m8 = await M8.findOne({ email: req.body.email })
     console.log(m8)
     if (m8) {
@@ -14,7 +13,6 @@ async function register(req, res, next) {
         req.body.deleted = false
         if (req.body.password === '') throw new NoPassword('A Password is Required')
         req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
-        console.log(req.body.password)
         const reactivatedM8 = await m8.updateOne(req.body, { new: true })
         res.status(201).json(reactivatedM8)
       } else {
