@@ -10,11 +10,11 @@ You can have full access to the project by clicking [**here!**](https://rate-my-
 
 # Brief
 
-* **Build a full-stack application** by making your own backend and your own front-end
-* **Use an Express API** to serve your data from a Mongo database
-* **Consume your API with a separate front-end** built with React
-* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
-* **Implement thoughtful user stories/wireframes** that are significant enough to help you know which features are core MVP and which you can cut
+* **Build a full-stack application** by making your own backend and your own front-end.
+* **Use an Express API** to serve your data from a Mongo database.
+* **Consume your API with a separate front-end** built with React.
+* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models.
+* **Implement thoughtful user stories/wireframes** that are significant enough to help you know which features are core MVP and which you can cut.
 * **Have a visually impressive design** to kick your portfolio up a notch and have something to wow future clients & employers. **ALLOW** time for this.
 * **Be deployed online** so it's publicly accessible.
 
@@ -55,7 +55,7 @@ Before beginning we had a meeting to discuss where each person would feel comfor
 * Frontend: Authentication, app navigation and the app game, show page.
 * Chris: 
 * Backend: database section, handling the data and seeding. 
-* Frontend: Homepage, adding and deleting a friend, authentication, profile page, comment section 
+* Frontend: Homepage, adding and deleting a friend, authentication, profile page, comment section. 
 * Devante: 
 * Backend: focused on the controllers required, error handling and bcrypt.
 * Frontend: Profile page, SASS, image uploading and plate index page and show page, authentication. 
@@ -215,7 +215,7 @@ export default function ProfileM8s({ formdata, m8s, setM8 }) {
 ```JavaScript
 const ownPl8s = (pl8 && m8 && pl8.filter(pl8s => pl8s.m8 === m8._id))
 ```
-* On the user model this is a r8dPl8s key with when a user assigned a rating to any plate that plate is added to the array
+* On the user model this is a r8dPl8s key with when a user assigned a rating to any plate that plate is added to the array.
 * I ran a map through this and added a turnery in order to place a default placement card if the array length was 0.
 * After running the map the plates were then displayed.
 ```JavaScript
@@ -304,7 +304,7 @@ return (
  
 
 ```
-* First the filter is used to return either all the plates when the input value is ‘’ or false
+* First the filter is used to return either all the plates when the input value is ‘’ or false.
 * Or else return the value that is typed into the input.
 * Whilst the search is in progress all plate names will be fully lowercase, regardless of how * they appear.
 * The input value the user types will be read as only lowercase regardless if they use * uppercase letters.
@@ -344,6 +344,6 @@ I feel this was a big learning curve project and I picked up new skills and mana
 # Future development
 
 * Add in a messaging service between friends.
-* Have friend requests instead of just an instant add.
+* Have friend requests instead of just an instant add button.
 * Filter plate by cooking and prep time and origin.
 * Mobile friendly design.
